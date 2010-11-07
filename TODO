@@ -1,0 +1,11 @@
+Add some function to fold struct and array(may differ from file type to file type)
+Add function to baloon variable value under cursor 
+Give user quicker way to add a variable display under cursor
+Automatically read target from Makefile
+Give user easier way to modify variable
+Add more GDB support
+Give user ability to modify the layout of the windows
+Give user ability to configure:
+  window layout
+  size of split window
+Add give debug target stdin stdout support 

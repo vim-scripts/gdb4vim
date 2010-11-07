@@ -1,0 +1,100 @@
+*gdb4vim.txt* Plugin that connects GDB and Vim
+
+Version 0.02 06, Nov 2010 17:44
+Author: Bruce Li <leilmyxwz@gmail.com>
+Copyright: (c) 2010 by Bruce Li               *gdb4vim-copyright*
+	The GPL v2 License applies to all gdb4vim code
+
+=============================================================
+1. Contents                                   *gdb4vim-contents*
+
+1. Contents................................... |gdb4vim-contents|
+2. Installation............................... |gdb4vim-install|
+3. Configuration.............................. |gdb4vim-config|
+4. Commands................................... |gdb4vim-commands|
+5. Keybindings................................ |gdb4vim-keybind|
+6. Thanks..................................... |gdb4vim-thanks|
+=============================================================
+                                              *gdb4vim-install*
+2. Installation
+To install this plugin, you need to download the package and unzip it.
+Then place the dbus_gdb folder into somewhere you like(you should specify 
+the path in your VIMRC file (see |gdb4vim-config|), and put the 
+plugin folder ~/.vim/, put doc folder into ~/.vim/
+
+You can start your vim and vim is able to identify the plugin itself.
+
+To generate this doc,  run :helptags ~/.vim/doc
+
+=============================================================
+
+3. Configuration                              *gdb4vim-config*
+First thing and first is that you tell gdb4vim where the gdb_dbus_server.py
+lies.
+To specify that, you need to set:
+let g:gdb_dbus_server_path = 'absolute full path to gdb_dbus_server.py'
+
+Then it comes to some user-defined color scheme, add the following line to
+your vimrc and modify them at your will
+let g:gdb_highlight = 'term=bold ctermbg=darkblue guibg=darkblue'
+let g:gdb_break_highlight = 'term=bold ctermbg=red guibg=red'
+let g:gdb_var_active_highlight = 'term=bold ctermfg=green guifg=green'
+
+==============================================================
+                                             *gdb4vim-commands*
+4. Commands
+First, you need to make sure you've compiled your
+executable with debug symble on, such as:
+
+gcc -g -o test test.c
+
+Then to enable the plugin, you go into your source(make sure
+they are already saved) and type
+
+:Gs
+
+You should be able to see the debug windows like following:
+     +-------+-----------------+
+     |       |                 |
+     | vari- | code area       |
+     | ables |                 |
+     |       |                 |
+     |       |                 |
+     +-------+-----------------+
+     |  gdb command window     |
+     |                         |
+     +-------+-----------------+
+
+Then you can type :Gt + orginal gdb commands to interact with gdb, such as:
+
+:Gt file test                             start to debug file "test"
+:Gt display {variable}                    add a variable to the watch window
+:Gt break [{file:}line] [{file:}function] command-line way to set a breakpoint
+:Gt clear {file:}line-num                 clear a breakpoint
+
+Here are also some specially-built commands for the plugin itself(These commands
+also are accomanied by :Gt)
+
+:Gt clc       clear the command-line window
+:Gt die       stop the debugging process 
+NOTE: you would always want to run this to stop the debugging process
+or you may suffer memory leak
+
+===============================================================
+                                            *gdb4vim-keybind*
+5. Keybindings
+The predefined shorcuts are (assume you've already typed :Gs):
+<C-B>     set a breakpoint at currentline
+<C-D>     delete the breakpoint at currentline
+<F7>      step
+<F8>      next
+<F9>      run
+
+==============================================================
+                                            *gdb4vim-thanks*
+6. Thanks
+Thank you very much for testing this VERY unstable script.
+If you have any feed back, just mail me to let me know.
+You can also help me by participating the project, if you like:
+
+http://code.google.com/p/gdb4vim

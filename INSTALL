@@ -1,0 +1,14 @@
+Thank you for helping me test this plugin!
+
+
+Requirement:
+Your vim should be compiled with python interface, 
+you should make sure that pygtk and python-dbus has already been installed
+
+To install this plugin:
+1. copy doc and plugin folder into ~/.vim
+2. copy dbus_gdb any where you like, then in your VIMRC file, please add:
+let g:gdb_dbus_server_path = 'Your path to the dbus_gdb/gdb_dbus_server.py'
+
+Then just enjoy.
+

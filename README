@@ -1,0 +1,14 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3310
+
+This is actually my first script, so please give me your feedbacks and say whatever you like and whenever you want to!
+
+Written with python, this script implements few basic functions in debugging, such as:
+1. Add a variable display
+2. Set/clear breakpoint
+3. step/next
+4. edit the value of a variable (since 0.023)
+
+You can find this project at:
+http://code.google.com/p/gdb4vim/
+
+EMail me if you'd like to participate!
