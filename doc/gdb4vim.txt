@@ -1,6 +1,6 @@
 *gdb4vim.txt* Plugin that connects GDB and Vim
 
-Version 0.02 06, Nov 2010 17:44
+Version 0.023 06, Nov 2010 17:44
 Author: Bruce Li <leilmyxwz@gmail.com>
 Copyright: (c) 2010 by Bruce Li               *gdb4vim-copyright*
 	The GPL v2 License applies to all gdb4vim code
@@ -13,7 +13,8 @@ Copyright: (c) 2010 by Bruce Li               *gdb4vim-copyright*
 3. Configuration.............................. |gdb4vim-config|
 4. Commands................................... |gdb4vim-commands|
 5. Keybindings................................ |gdb4vim-keybind|
-6. Thanks..................................... |gdb4vim-thanks|
+6. Editing variables.......................... |gdb4vim-varedit|
+7. Thanks..................................... |gdb4vim-thanks|
 =============================================================
                                               *gdb4vim-install*
 2. Installation
@@ -91,8 +92,24 @@ The predefined shorcuts are (assume you've already typed :Gs):
 <F9>      run
 
 ==============================================================
+6. Editing Variables                        *gdb4vim-varedit*
+
+In version 0.022 or later, we added some features to allow you edit variables.
+
+When a variable is "active" in the context, it appears as a special color tdefault is grey in background).
+If the variable is active, you should first, 
+   call :Gt undisplay <VAR-ID> 
+to disable it in GDB, here <VAR-ID> is number starting from beginning of the variable's line
+and ends before the first ':' sign
+
+If a variable is not "active", you can simply press dd to delete the line and the variable won't appear again
+
+You can edit the value of a variable by put the cursor on its line and hit <CR>, this will cause vim to display
+a line at the bottom, requesting an input.
+
+==============================================================
                                             *gdb4vim-thanks*
-6. Thanks
+7. Thanks
 Thank you very much for testing this VERY unstable script.
 If you have any feed back, just mail me to let me know.
 You can also help me by participating the project, if you like:

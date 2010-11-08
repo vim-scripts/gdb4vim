@@ -57,6 +57,8 @@ function! s:Create_Gdb_Window (name)
 
 	if (a:name) == 'gdbvar'
 		exe 'silent! 25vsplit gdbvar'
+		nnoremap <buffer> <silent> <CR> 
+			\ :call Edit_Variable_Value() <CR>
 	endif
 
 	let index = bufwinnr (cur_buf)
@@ -335,9 +337,35 @@ def retrieve_msg_from_gdb (cmdline):
 	# Hightlight current line to be displayed
 	highlight_cur_line (lilist)
 
+
+def edit_variable_value ():
+	line = vim.eval ("getline ('.')")
+	line = line.split (':')
+	if (line[0] == ""):
+		return
+
+	if (len (line) < 2):
+		return
+	
+	eqpos = line[1].find ('=')
+	if (eqpos == -1):
+		return
+
+	variable = line[1][:eqpos]
+
+	value = vim.eval ("input('Please input value for %s :')" % variable)
+	vim.eval ("s:Check_Window_Exists ('gdbcmd')")
+	vim.eval ("s:Check_Window_Exists ('gdbvar')")
+	cmdline = "set var %s = %s " % (variable, value)
+	retrieve_msg_from_gdb (cmdline)
+
 endpython
 
-
+function! Edit_Variable_Value ()
+python << endpython
+edit_variable_value ()
+endpython
+endfunction
 
 function! Gdbtest (c)
 	call s:Check_Window_Exists ('gdbcmd')
